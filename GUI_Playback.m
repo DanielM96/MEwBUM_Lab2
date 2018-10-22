@@ -262,8 +262,7 @@ global selectedOctave;
 selectedOctave = get(hObject,'Value');
 if selectedOctave >= 8
     msgbox({'UWAGA!','',...
-        'Wybierasz zakres czêstotliwoœci, który jest niebezpieczny dla ucha.',...
-        'Jeœli chcesz jeszcze s³yszeæ - wybierz ni¿szy.'},...
+        'Jeœli chcesz do¿yæ staroœci i nie denerwowaæ otoczenia - wybierz ni¿sz¹ oktawê.'},...
         'Ostrze¿enie!','warn');
 end
 
@@ -309,7 +308,7 @@ if ~isempty(fullSound)
     sound(fullSound,Fs);
     spectrogram(fullSound,1024,512,1024,Fs);
 else
-    msgbox('Nie mo¿na odtworzyæ dŸwiêku, którego nie ma :)');
+    msgbox({'Brak zarejestrowanego dŸwiêku.','Nie ma czego odtwarzaæ.'},'B³¹d','warn');
 end
 
 % --- Executes during object creation, after setting all properties.
@@ -333,7 +332,7 @@ if ~isempty(fullSound)
     fullSound = [];
     cla(handles.axes1_spectre,'reset');
 else
-    msgbox('Nie mo¿na usun¹æ dŸwiêku, którego nie ma :)');
+    msgbox({'Brak zarejestrowanego dŸwiêku.','Nie ma czego usuwaæ.'},'B³¹d','warn');
 end
 
 % --- Executes during object creation, after setting all properties.

@@ -22,7 +22,7 @@ function varargout = GUI_Live(varargin)
 
 % Edit the above text to modify the response to help GUI_Live
 
-% Last Modified by GUIDE v2.5 20-Oct-2018 13:09:28
+% Last Modified by GUIDE v2.5 22-Oct-2018 19:41:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -86,11 +86,15 @@ set(handles.pushbutton2_stop,'Enable','on');
 Fs = 44100;
 recObj = audiorecorder(Fs,16,1);
 T = 0.1;
-
+record(recObj);
+pause(T*2);
 while isAudioCaptured
-    recordblocking(recObj,T);
+    record(recObj);
     recordedSound = getaudiodata(recObj);
     
+    if (length(recordedSound)) > (Fs*T)
+        recordedSound = recordedSound(end-(Fs*T)-1:end);
+    end
     N = length(recordedSound);
     df = Fs/N;
     f = 0:df:Fs/2;
@@ -113,6 +117,7 @@ while isAudioCaptured
     zoom on;
     drawnow;
 end
+stop(recObj);
 
 % --- Executes on button press in pushbutton2_stop.
 function pushbutton2_stop_Callback(hObject, eventdata, handles)
@@ -161,3 +166,11 @@ cla(handles.axes2_spectre,'reset');
 %         end
 %     end
 % end
+
+
+% --- Executes on button press in pushbutton3_exit.
+function pushbutton3_exit_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton3_exit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+delete(handles.figure1);

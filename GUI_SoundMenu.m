@@ -22,7 +22,7 @@ function varargout = GUI_SoundMenu(varargin)
 
 % Edit the above text to modify the response to help GUI_SoundMenu
 
-% Last Modified by GUIDE v2.5 20-Oct-2018 13:09:36
+% Last Modified by GUIDE v2.5 22-Oct-2018 18:43:01
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,6 +60,7 @@ guidata(hObject, handles);
 
 % UIWAIT makes GUI_SoundMenu wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+evalin('base','clear; clc');
 
 
 % --- Outputs from this function are returned to the command line.
@@ -85,15 +86,14 @@ function pushbutton2_live_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2_live (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% GUI_Live;
-recordingGUIV7;
+GUI_Live;
 
-% --- Executes on button press in pushbutton3_spectre_live.
-function pushbutton3_spectre_live_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3_spectre_live (see GCBO)
+% --- Executes on button press in pushbutton3_mod.
+function pushbutton3_mod_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton3_mod (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-realtimeSpectrogramV3;
+GUI_Modulation;
 
 % --- Executes on button press in pushbutton4_about.
 function pushbutton4_about_Callback(hObject, eventdata, handles)
@@ -104,9 +104,9 @@ msgbox({ 'GUI do analizy dŸwiêków.',...
     '',...
     'Funkcje: ',...
     '- rejestracja dŸwiêku i jego analiza,',...
-    '- analiza widma dŸwiêku w czasie rzeczywistym,',...
-    '- analiza spektrogramu dŸwiêku w czasie rzeczywistym,',...
-    '- odtwarzanie dŸwiêków.'...
+    '- analiza widma i spektrogramu dŸwiêku w czasie rzeczywistym,',...
+    '- modulacja zarejestrowanego dŸwiêku,',...
+    '- odgrywanie dŸwiêków z klawiatury.'...
     '',},'Informacje','help');
 
 % --- Executes on button press in pushbutton5_exit.
